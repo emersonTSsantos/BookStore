@@ -1,26 +1,38 @@
-name: Python PR and Push Workflow
+name: Python Pull Request Workflow
 
-on:
-  push:
-  pull_request:
+on: [pull_request]
 
 jobs:
   qa:
     name: Quality check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.8
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
-      - name: Install poetry
+          python-version: '3.8'
+
+      - name: Upgrade pip and install Poetry
         run: |
-          pip install -U pip
+          pip install --upgrade pip
           pip install poetry
-          poetry install
         env:
           POETRY_VIRTUALENVS_CREATE: false
 
-      - name: Test
+      - name: Install dependencies via Poetry
+        run: poetry install
+
+      - name: Run tests
         run: poetry run python manage.py test
+
+      - name: Wemake Python Styleguide
+        uses: wemake-services/wemake-python-styleguide@0.16.0
+        continue-on-error: true
+        with:
+          reporter: 'github-pr-review'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
