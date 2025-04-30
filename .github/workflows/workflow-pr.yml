@@ -1,7 +1,10 @@
 name: Python Pull Request Workflow
-on: [pull_request]
-jobs:
 
+on:
+  push:
+  pull_request:
+
+jobs:
   qa:
     name: Quality check
     runs-on: ubuntu-18.04
@@ -29,6 +32,7 @@ jobs:
       - name: Test
         run: |
           poetry run python manage.py test
+          
       - name: Wemake Python Stylguide
         uses: wemake-services/wemake-python-styleguide@0.16.0
         continue-on-error: true
