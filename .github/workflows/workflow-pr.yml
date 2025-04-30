@@ -29,6 +29,8 @@ jobs:
       - name: Test
         run: |
           poetry run python manage.py test
+        env:
+            DJANGO_ALLOWED_HOSTS: 'localhost 127.0.0.1'
       - name: Wemake Python Stylguide
         uses: wemake-services/wemake-python-styleguide@0.16.0
         continue-on-error: true
