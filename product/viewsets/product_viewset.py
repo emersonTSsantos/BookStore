@@ -5,6 +5,7 @@ from product.serializers.product_serializer import ProductSerializer
 
 
 class ProductViewSet(ModelViewSet):
+    
     serializer_class = ProductSerializer
 
     def get_queryset(self):
