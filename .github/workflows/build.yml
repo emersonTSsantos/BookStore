@@ -1,0 +1,53 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.12]
+
+    runs-on: ubuntu-latest
+
+    services:
+      # Adding a PostgreSQL service
+      db:
+        image: postgres:13
+        ports:
+          - 5434:5432
+        env:
+          POSTGRES_USER: bookstore_dev
+          POSTGRES_PASSWORD: bookstore_dev
+          POSTGRES_DB: bookstore_dev_db
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      - name: Install poetry
+        run: |
+          python -m ensurepip
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade poetry
+
+      - name: Install dependencies
+        shell: bash
+        run: poetry install
+
+      # Start Docker Compose and run tests within the container
+      - name: Start Docker Compose services
+        run: docker-compose up -d --build
+
+      - name: Run Tests
+        run: docker-compose exec -T web python manage.py test
