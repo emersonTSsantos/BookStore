@@ -3,12 +3,44 @@
 <html>
 <head>
     <title>Bem-vindo</title>
-    <!-- Importa o CSS padrão do DRF -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@api-platform/api-docs@1.0.0/dist/styles.css">
     <link rel="stylesheet" href="{% static 'rest_framework/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'rest_framework/css/default.css' %}">
+    <style>
+        .faixa {
+            padding: 4px;
+            background-color: #A30000;
+        }
+        div.content {
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #F7F7F9;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+        }
+        .custom-header {
+            background-color: #2C2C2C !important;
+            color: #fff !important;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+        .custom-header .navbar-brand {
+            color: #fff !important;
+        }
+        h1 {
+            color: #2C2C2C;
+            padding: 0.2em ;
+            display: inline-block;
+        }
+        body {
+            background: #f8f9fa;
+        }
+    </style>
 </head>
 <body class="container">
+    <div class="faixa"></div>
+    <div class="navbar custom-header">
+        <a class="navbar-brand" href="#">Bookstore API</a>
+    </div>
     <div class="content">
         <h1>Bem-vindo ao projeto Bookstore API!</h1>
         <p>Use os seguintes endpoints para acessar os recursos disponíveis:</p>
