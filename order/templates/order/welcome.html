@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bem-vindo</title>
+    <!-- Importa o CSS padrão do DRF -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@api-platform/api-docs@1.0.0/dist/styles.css">
+    <link rel="stylesheet" href="{% static 'rest_framework/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'rest_framework/css/default.css' %}">
+</head>
+<body class="container">
+    <div class="content">
+        <h1>Bem-vindo ao projeto Bookstore API!</h1>
+        <p>Use os seguintes endpoints para acessar os recursos disponíveis:</p>
+        <ul>
+            <li><a href="/bookstore/v1/product/">/bookstore/v1/product/</a> – Lista de produtos</li>
+            <li><a href="/bookstore/v1/order/">/bookstore/v1/order/</a> – Lista de pedidos</li>
+        </ul>
+    </div>
+</body>
+</html>
