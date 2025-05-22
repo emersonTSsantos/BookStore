@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import git
 
+
 @csrf_exempt
 def update(request):
     if request.method == "POST":
@@ -12,15 +13,15 @@ def update(request):
         stored on PythonAnywhere in the git.Repo() as parameter.
         Here the name of my directory is "test.pythonanywhere.com"
         '''
-        repo = git.Repo('/home/EmersonTSantos/BookStore')
+        repo = git.Repo('/home/EmersonTSantos/')
         origin = repo.remotes.origin
 
         origin.pull()
-        return HttpResponse("Updated code on PythonAnywhere")
+        return HttpResponse("✅ Código atualizado com sucesso!")
     else:
-        return HttpResponse("Couldn't update the code on PythonAnywhere")
+        return HttpResponse("⛔ Acesso negado. Apenas requisições POST são permitidas.")
 
 
-def welcome(request):
-  template = loader.get_template('welcome.html')
+def hello_world(request):
+  template = loader.get_template('hello_world.html')
   return HttpResponse(template.render())
