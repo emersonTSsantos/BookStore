@@ -13,7 +13,7 @@ def update(request):
         stored on PythonAnywhere in the git.Repo() as parameter.
         Here the name of my directory is "test.pythonanywhere.com"
         '''
-        repo = git.Repo('/home/EmersonTSantos/')
+        repo = git.Repo('/home/EmersonTSantos/BookStore')
         origin = repo.remotes.origin
 
         origin.pull()
@@ -23,5 +23,5 @@ def update(request):
 
 
 def hello_world(request):
-  template = loader.get_template('hello_world.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('hello_world.html')
+    return HttpResponse(template.render())
