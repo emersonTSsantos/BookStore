@@ -24,8 +24,8 @@ from bookstore import views
 urlpatterns = [
     path("__debug__/", include(debug_toolbar.urls)),
     path("admin/", admin.site.urls),
-    path("", welcome_view),  # Rota para http://localhost:8000/
-    path("bookstore/", welcome_view),  # Rota para http://localhost:8000/bookstore/
+    path("", welcome_view), 
+    path("bookstore/", welcome_view),
     re_path("bookstore/(?P<version>(v1|v2))/", include("order.urls")),
     re_path("bookstore/(?P<version>(v1|v2))/", include("product.urls")),
     path("api-token-auth/", obtain_auth_token, name="api_token_auth"),
